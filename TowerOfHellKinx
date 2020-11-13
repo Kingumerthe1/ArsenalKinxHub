@@ -50,29 +50,9 @@ end)
 -- This section disables the games anticheat. The devs are actually retarded. They have one function that
 -- kicks a player. I simply just got the function and hooked it. ez hub winning doe.
     
-local stat, err = pcall(function()
-	mt = getrawmetatable(game)
-	ncallsa = mt.__namecall
-	setreadonly(mt, false)
-	mt.__namecall = newcclosure(function(...)
-		args = {
-			...
-		}
-		if not checkcaller() and getnamecallmethod() == "Kick" then
-			return nil
-		end
-		return ncallsa(...)
-	end)
-	setreadonly(mt, true)
-	function getKick()
-		return getsenv(game:GetService("Players").LocalPlayer.PlayerScripts.LocalScript).kick
-	end
-    debug.setproto(getKick(), 1, function()
-        return nil;
-	end)
-end)
-
-print(err)
+penis = getsenv(game:GetService("Players").LocalPlayer.PlayerScripts.LocalScript)
+local penis2
+penis2 = hookfunction(penis.kick, function() end)
 
 -- Enables/Disables inf jump. Essentially its the main toggle.
 mainsection:addToggle("Infinite Jump", nil, function(value)
